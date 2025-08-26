@@ -59,6 +59,6 @@ export async function GET(req: NextRequest,{params}: {params: { sector: string}}
         );
         return NextResponse.json(result)
     }catch(err){
-        return NextResponse.json({error: err})
+        return NextResponse.json({error: err},{status: 400})
     }
 }

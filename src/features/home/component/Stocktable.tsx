@@ -21,13 +21,18 @@ export const Stocktable = ( { sector } : StockTableProps ) => {
 
         // initial fetch
         const fetchStockDatas = async()=>{
-            const response = await axios.get(`/api/stock/${sector}`)
-            if(response.status !== 200){
-                toast.error("Something went wrong")
+          try{
+              const response = await axios.get(`/api/stock/${sector}`)
+              setDatas(response.data);
+          }catch(error: any){
+            if(axios.isAxiosError(error)){
+                if(error.response?.status === 400){
+                    toast.error("Failed to fetch stocks")
+                }
+            }else{
+                toast.error("Unexpected error happened")
             }
-            else{
-                setDatas(response.data);
-            }
+          }
         }
 
        if(sector){
