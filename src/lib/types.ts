@@ -22,4 +22,5 @@ export type Stock = {
   bookValue?: number;
   priceToSales?: number;
   cfo?: number;
+  portfolioWeight?: number;
 }
