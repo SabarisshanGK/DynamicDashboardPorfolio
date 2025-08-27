@@ -2,7 +2,7 @@ import { stockSectorList } from "@/lib/datas";
 import { NextRequest, NextResponse } from "next/server";
 import yahooFinance from "yahoo-finance2";
 
-export async function GET(req: NextRequest, context: { params: { sector: string } }){
+export async function GET(req: NextRequest, context: { params: { sector: string } | Promise<{ sector: string }> }){
     try {
          const params = await context.params;
          const { sector } = params;
