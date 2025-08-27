@@ -57,7 +57,7 @@ export const Stocktable = ( { sector } : StockTableProps ) => {
             Header: "Name",
             accessor: "particulars",
              Cell: ({ value }) => (
-                <div className="w-full truncate text-left">{value}</div> 
+                <div className="w-full truncate text-left">{value || ""}</div> 
             ),
         },
         {
@@ -75,27 +75,42 @@ export const Stocktable = ( { sector } : StockTableProps ) => {
         {
             Header: "Exchange",
             accessor: "exchange",
-            Cell: props => <span className={`text-center ${props.value === "NSE"?"text-[#007DFC]":"text-[#EFB745]"}`}>{props.value}</span>
+            Cell: props => <span className={`text-center ${props.value === "NSE"?"text-[#007DFC]":"text-[#EFB745]"}`}>{props.value|| ""}</span>
         },
         {
             Header: "Portfolio Percentage",
             accessor: "portfolioWeight",
-            Cell: props => <span>{props.value} %</span>
+            Cell: props => <span>{props.value || 0} %</span>
         },
         {
             Header: "Gain/Loss %",
             accessor: "gainLossPercent",
-            Cell: props => <span className={`flex gap-2  justify-between pl-3 rounded-md w-[100px] h-max items-center p-2 ${props.value > 0? "bg-[#1ECB44]/10":"bg-[#FF0000]/10"} font-readex ${props.value > 0 ? "text-[#1ECB44]":"text-[#FF0000]"} `}>{props.value?.toFixed(2)} {props.value > 0 ? <BiUpArrow/> :<BiDownArrow/>}</span>
+            Cell: props => {
+                const value = props.value || 0;
+                return(
+                    <span className={`flex gap-2  justify-between pl-3 rounded-md w-[100px] h-max items-center p-2 ${value > 0? "bg-[#1ECB44]/10":"bg-[#FF0000]/10"} font-readex ${value > 0 ? "text-[#1ECB44]":"text-[#FF0000]"} `}>{props.value?.toFixed(2)} {value > 0 ? <BiUpArrow/> :<BiDownArrow/>}</span>
+                )
+            }
         },
          {
             Header: "CMP",
             accessor: (row: Stock) => row.yahooFinance?.price ?? 0,
-            Cell: ({value})=> <motion.span key={value} initial={{opacity:0}} animate={{opacity:1}} transition={{duration:1}}>{value}</motion.span>
+            Cell: props => {
+                const value = props.value || 0;
+                return(
+                    <motion.span key={value} initial={{opacity:0}} animate={{opacity:1}} transition={{duration:1}}>{value}</motion.span>
+                )
+            }
         },
          {
             Header: "Present Value",
             accessor: "presentValue",
-            Cell: props => <span>{props.value?.toFixed(1)}</span>
+            Cell: props => {
+                const value = props.value || 0;
+                return(
+                    <span>{value?.toFixed(1)}</span>
+                )
+            }
         },
          {
             Header: "Gain/loss",
