@@ -13,7 +13,7 @@ export const HomeView = () =>{
     }
 
     return(
-        <div className="w-full h-full  p-[20px] flex flex-col gap-10">
+        <div className="w-full h-full  p-[20px] flex flex-col gap-10  overflow-x-auto">
             
             {/* Select Sector section */}
             <div className="flex gap-6 w-max h-max items-center">

@@ -3,16 +3,28 @@
 import { usePathname, useRouter } from "next/navigation";
 import { RxDashboard } from "react-icons/rx";
 import { CiViewTable } from "react-icons/ci";
+import { Dispatch, SetStateAction } from "react";
+import { CgClose } from "react-icons/cg";
+
+interface SidebarProps{
+    isOpen: boolean;
+    setIsOpen: Dispatch<SetStateAction<boolean>>;
+};
 
 
 
-export const Sidebar = () => {
+export const Sidebar = ( { isOpen , setIsOpen } : SidebarProps ) => {
 
     const pathname = usePathname();
     const router = useRouter();
 
     return(
-        <div className="h-full w-[250px] border-r border-solid border-[#EDEDED] bg-white gap-10 flex flex-col items-center pt-10 px-3 fixed left-0 top-0">
+        <div className={`h-full z-10 w-[250px] border-r border-solid border-[#EDEDED] bg-white gap-10 flex flex-col items-center pt-10 px-3 fixed left-0 top-0 ${isOpen ? "translate-x-0" : "-translate-x-full" }` }>
+
+            {/* Button only visible in mobile device */}
+            <button className="outline-0 p-4 flex items-center justify-center md:hidden absolute top-0 right-1" onClick={()=>setIsOpen(false)}>
+                <CgClose/>
+            </button>
            
            {/* Logo */}
            <svg width="180" height="36" viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg">

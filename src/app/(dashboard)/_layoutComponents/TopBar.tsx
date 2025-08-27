@@ -1,13 +1,22 @@
 "use client";
 
 import Image from "next/image";
+import { Dispatch, SetStateAction } from "react";
+import { MdMenu, MdMenuOpen } from "react-icons/md";
 
-export const TopBar = () => {
+interface TopBarProps{
+    setIsOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+export const TopBar = ({ setIsOpen }: TopBarProps) => {
     return(
-        <div className="sticky left-[250px] top-0 right-0 w-full h-[72px] bg-white border-b border-solid border-[#EDEDED] flex items-center justify-between px-10">
+        <div className={`sticky md:left-[250px] left-0 top-0 right-0 w-full h-[72px] bg-white border-b border-solid border-[#EDEDED] flex items-center justify-between px-10`}>
             
             {/* Title */}
-            <span className="font-inter text-2xl leading-8 text-[#051635]">Dynamic Portfolio Dashboard</span>
+            <div className="flex items-center w-max h-max">
+                <button className="md:hidden" onClick={()=>setIsOpen(true)}><MdMenu/></button>
+                <span className="font-inter md:text-2xl text-sm ml-10 md:ml-0 md:w-fit  w-2xl truncate leading-8 text-[#051635]">Dynamic Portfolio Dashboard</span>
+            </div>
 
             {/* Nav buttons */}
             <div className="w-max h-[40px] flex items-center gap-[12px]">
