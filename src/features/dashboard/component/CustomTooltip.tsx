@@ -1,7 +1,11 @@
 import { TooltipProps } from "recharts";
-import { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 
-export const CustomTooltip = ({ active, payload, label }: TooltipProps<ValueType, NameType>) => {
+
+interface CustomTooltipProps extends TooltipProps<number, string> {
+  payload?: { value: number; name: string }[];
+}
+
+export const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload; // full chartData row
     return (
