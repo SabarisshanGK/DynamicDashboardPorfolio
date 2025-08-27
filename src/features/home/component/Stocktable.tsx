@@ -5,7 +5,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react"
 import { BiDownArrow, BiUpArrow } from "react-icons/bi";
-import  {Column, useTable}  from 'react-table';
+import  {CellProps, Column, useTable}  from 'react-table';
 import { toast } from "sonner";
 
 interface StockTableProps{
@@ -95,7 +95,7 @@ export const Stocktable = ( { sector } : StockTableProps ) => {
          {
             Header: "CMP",
             accessor: (row: Stock) => row.yahooFinance?.price ?? 0,
-            Cell: props => {
+            Cell: (props: CellProps<Stock,number>) => {
                 const value = props.value || 0;
                 return(
                     <motion.span key={value} initial={{opacity:0}} animate={{opacity:1}} transition={{duration:1}}>{value}</motion.span>
@@ -124,7 +124,7 @@ export const Stocktable = ( { sector } : StockTableProps ) => {
          {
             Header: "P/E",
             accessor: (row: Stock)=>row.yahooFinance?.peRatio ?? 0,
-            Cell: props => <span>{props.value.toFixed(1)}</span>
+            Cell: (props: CellProps<Stock,number>) => <span>{props.value.toFixed(1)}</span>
         },
         // {
         //     Header: "Revenue",
