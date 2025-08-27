@@ -3,7 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import yahooFinance from "yahoo-finance2";
 
 export async function GET(req: NextRequest, context: { params: { sector: string } }) {
-    const { sector } = context.params;
+      const params = await context.params;
+      const { sector } = params;
     try{
         const filteredStockList = stockSectorList.filter((item)=> item.sector === sector)
         const stockExchange =  await Promise.all(

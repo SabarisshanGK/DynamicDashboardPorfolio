@@ -4,7 +4,8 @@ import yahooFinance from "yahoo-finance2";
 
 export async function GET(req: NextRequest, context: { params: { sector: string } }){
     try {
-        const { sector } = context.params;
+         const params = await context.params;
+         const { sector } = params;
 
         const filterdeStocks = stockSectorList.filter((item)=> item.sector === sector);
         const today = new Date();
