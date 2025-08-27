@@ -2,9 +2,9 @@ import { stockSectorList } from "@/lib/datas";
 import { NextRequest, NextResponse } from "next/server";
 import yahooFinance from "yahoo-finance2";
 
-export async function GET(req: NextRequest,{params}: {params: { sector: string}}){
+export async function GET(req: NextRequest, context: { params: { sector: string } }){
     try {
-        const { sector } = params;
+        const { sector } = context.params;
 
         const filterdeStocks = stockSectorList.filter((item)=> item.sector === sector);
         const today = new Date();
