@@ -1,8 +1,16 @@
 import { TooltipProps } from "recharts";
 
+interface StockHistory {
+  date: string;
+  open: number;
+  close: number;
+  high: number;
+  low: number;
+  volume: number;
+}
 
 interface CustomTooltipProps extends TooltipProps<number, string> {
-  payload?: { value: number; name: string }[];
+  payload?: { value: number; name: string ; payload: StockHistory}[];
 }
 
 export const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
