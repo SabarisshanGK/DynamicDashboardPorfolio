@@ -1,6 +1,5 @@
 import { stockSectorList } from "@/lib/datas";
 import { NextRequest, NextResponse } from "next/server";
-import { json } from "stream/consumers";
 import yahooFinance from "yahoo-finance2";
 
 export async function GET(req: NextRequest,{params}: {params: { sector: string}}) {

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
-import { MdMenu, MdMenuOpen } from "react-icons/md";
+import { MdMenu } from "react-icons/md";
 
 interface TopBarProps{
     setIsOpen: Dispatch<SetStateAction<boolean>>;

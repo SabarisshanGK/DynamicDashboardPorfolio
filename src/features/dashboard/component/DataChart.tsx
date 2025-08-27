@@ -34,7 +34,7 @@ export const DataChart = ({ sector }: DataChartProps) => {
             try{
               const response = await axios.get(`/api/charts/${sector}`)
               setStocks(response.data);
-            }catch(error: any){
+            }catch(error){
               if(axios.isAxiosError(error)){
                   if(error.response?.status === 400){
                     toast.error("Failed to fetch chart datas")

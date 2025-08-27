@@ -22,7 +22,7 @@ export async function GET(req: NextRequest,{params}: {params: { sector: string}}
 
                 return {
                     symbol: stock.symbol,
-                    chartData: chartDatas.map((item: any)=>({
+                    chartData: chartDatas.map((item)=>({
                         date: new Date(item.date).toLocaleDateString(),
                         close: item.close,
                         open: item.open,
