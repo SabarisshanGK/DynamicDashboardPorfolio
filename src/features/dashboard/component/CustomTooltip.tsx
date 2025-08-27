@@ -11,7 +11,7 @@ interface StockHistory {
 
 interface CustomTooltipProps extends TooltipProps<number, string> {
   payload?: { value: number; name: string ; payload: StockHistory}[];
-  label: string;
+  label?: string;
 }
 
 export const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
